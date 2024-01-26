@@ -11,8 +11,16 @@ const getItems = async (req, res) => {
     }
 
 }
-const getItem = (req, res) => {
+const getItem = async (req, res) => {
 
+    try {
+        req = matchedData(req);
+        const { id } = req
+        const data = await tracksModule.findById(id);
+        res.send({ data })
+    } catch (error) {
+        handleError(res, "ERROR_GET_ITEM")
+    }
 }
 const createItem = async (req, res) => {
 
@@ -27,10 +35,28 @@ const createItem = async (req, res) => {
     }
 
 }
-const updateItem = (req, res) => {
+const updateItem = async (req, res) => {
+
+    try {
+        const { id, ...body } = matchedData(req)
+        const data = await tracksModule.findByIdAndUpdate(id, body)
+
+        res.send({ data })
+
+    } catch (error) {
+        handleError(res, 'ERROR_UPDATE_ITEM')
+    }
 
 }
-const deleteItem = (req, res) => {
+const deleteItem = async (req, res) => {
 
+    try {
+        const { id } = matchedData(req)
+        const data = await tracksModule.findByIdAndDelete(id)
+        res.send({ data })
+
+    } catch (error) {
+        handleError(res, 'ERROR_DELETE_ITEM')
+    }
 }
 module.exports = { getItems, getItem, createItem, updateItem, deleteItem }

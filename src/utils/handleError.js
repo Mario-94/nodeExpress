@@ -1,5 +1,5 @@
 /**
- * es el manegador de errores
+ * Manejador de errores
  * @param {*} res 
  * @param {*} message 
  * @param {*} code 

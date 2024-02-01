@@ -14,9 +14,10 @@ const tokenSing = async (user) => {
         JWT_SECRET,
         {
             /* con esto indico que se expira a las dos horas el token, asi que seria necesario verificar que el token este activo desde el front */
-            expiresIn: "2h"
+            expiresIn: '2h'
         }
     )
+
     return sing
 }
 

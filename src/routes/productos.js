@@ -1,6 +1,8 @@
 const express = require('express');
-const { getItem, getItems } = require('../controllers/productos');
+const { getItems } = require('../controllers/productos');
+const { validatorPagination } = require('../validators/products');
+
 
 const router = express.Router();
-router.get('/', getItems)
+router.get('/', validatorPagination, getItems)
 module.exports = router
